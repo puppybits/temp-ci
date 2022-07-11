@@ -42,7 +42,7 @@ jobs:
             utils
           requireScope: true
           # PR title must end with JIRA ticket number.
-          subjectPattern: IMPLY-\d+
+          subjectPattern: IMPLY\-
           subjectPatternError: |
             The the pull request title does not include the JIRA ticket number
             Example: `{title} [IMPLY-1234]`
