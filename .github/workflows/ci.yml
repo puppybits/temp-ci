@@ -42,10 +42,10 @@ jobs:
             utils
           requireScope: true
           # PR title must end with JIRA ticket number.
-          subjectPattern: \[IMPLY\-\d+\]$
+          subjectPattern: \[IMPLY\-\d+
           subjectPatternError: |
-            The subject "{subject}" found in the pull request title "{title}"
-            does not inlcude the JIRA ticket. Example: `feat(pivot): new thing [IMPLY-1234]`
+            The the pull request title does not include the JIRA ticket number
+            Example: `{title} [IMPLY-1234]`
           ignoreLabels: |
             bot
           # For work-in-progress PRs use a draft pull requests 
