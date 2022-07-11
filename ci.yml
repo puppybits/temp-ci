@@ -1,0 +1,52 @@
+name: "Lint PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+jobs:
+  main:
+    name: Conventional Commit PRs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+          # Scope is manditory to automated LTS/STS back-ports and changelogs
+          scopes: |
+            design-system
+            data-cubes
+            pivot
+            ingestion
+            docs
+            billing
+            auth
+            admin
+            utils
+          requireScope: true
+          # PR title must end with JIRA ticket number.
+          subjectPattern: \[IMPLY\-\d+\]$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            does not inlcude the JIRA ticket. Example: `feat(pivot): new thing [IMPLY-1234]`
+          ignoreLabels: |
+            bot
+          # For work-in-progress PRs use a draft pull requests 
+          wip: false
